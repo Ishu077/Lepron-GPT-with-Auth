@@ -1,0 +1,39 @@
+.chats{
+    width: 700px; /*same as chat imput*/
+    overflow-y: auto;
+    padding: 8rem;
+
+}
+
+.userDiv{
+    display: flex;
+    justify-content: flex-end;
+    /* margin-bottom: 2rem; */
+    font-size: 0.9rem;
+}
+
+.gptDiv{
+    /* display: flex;
+    justify-content: flex-start; */
+    text-align: left;
+    /* margin-bottom: 2rem; */
+    font-size: 0.9rem;
+}
+
+.userMessage{
+    background-color: #323232;
+    padding: 10px 20px;
+    border-radius: 14px;
+    /* margin-left: ; */
+    max-width: 500px;
+    width:fit-content;
+}
+
+.hljs{  /*how we came to know about this class name  inspect and selected the reply code part!? */
+    border-radius: 14px;
+}
+
+.pre{
+    white-space: pre-wrap;  /*commonly used for code blocks*/
+    
+}

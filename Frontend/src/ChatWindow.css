@@ -1,0 +1,140 @@
+.chatWindow{
+    background-color: #212121;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+}
+
+/* Navbar styling--> */
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; */
+}
+
+.navbar span{
+    margin: 1rem 2rem;
+
+}
+
+.userIconDiv{
+    margin: 1rem 2rem;
+}
+
+.userIcon{
+    /* color: blue;
+     */
+    background-color: #339cff;
+    height:25px;
+    width: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+/* chatinput styling--> */
+
+.chatInput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.inputBox{
+    width: 100%;
+    position: relative; /* here position is used coz- */
+    max-width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input{
+    width: 100%;
+    border: none;
+    background-color: rgba(255,255,255,0.25);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px,  /* box shadow of gpt!*/
+                rgba(0, 0, 0, 0.05) 0 -12px 30px,
+                rgba(0, 0, 0, 0.05) 0 4px 6px,
+                rgba(0, 0, 0, 0.05) 0 12px 3px,
+                rgba(0, 0, 0, 0.05) 0 -3px 5px;
+}
+input:focus{
+    outline: none;
+}
+
+.info{
+    font-size: 0.8rem;
+    padding: 10px;
+    color: #b4b4b4;
+}
+
+#submit{
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    font-size: 25px;
+    right:15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;   /*When you use position: absolute; on the #submit element, it gets removed from the normal document flow and positioned relative to its nearest positioned parent (the .inputBox which has position: relative).*/
+}
+
+#submit i:hover{
+    color:white
+}
+
+/* Drop down styling */
+.dropDown{
+    position: absolute;
+    right:0;
+    top: 4rem;
+    background-color: #323232;
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    width: 150px;
+    z-index: 1000;
+    text-align: left;
+    box-shadow: 0px 2px 8px rgbs(0,0,0,0.1)
+}
+.dropDownItem {
+    font-size: 0.9rem;
+    margin: 0.3rem 0rem;
+    padding: 0.5rem 0.2rem;
+    cursor: pointer;
+}
+
+
+.dropDownItem:hover {
+    background-color: rgba(180, 180, 180, 0.25);
+    border-radius: 6px;
+}
+
+.dropDownItem.user-info {
+    font-weight: 600;
+    color: #4a9eff;
+    border-bottom: 1px solid #404040;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.dropDownItem.user-info:hover {
+    background-color: transparent;
+    cursor: default;
+}
