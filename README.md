@@ -4,13 +4,15 @@ A full-stack chat application built with React and Node.js that allows users to 
 
 ## Features
 
-- 💬 Real-time chat with AI assistant
-- 📝 Multiple conversation threads
-- ⚡ Typing effect for AI responses
-- 📱 Responsive design
-- 🔄 Thread management (create, switch, delete)
-- 💾 Persistent chat history
-- 🎨 Modern UI with Font Awesome icons
+- 🔐 **User Authentication** - Secure signup/login with session-based auth
+- 💬 **Real-time chat** with AI assistant
+- 📝 **Multiple conversation threads** per user
+- ⚡ **Typing effect** for AI responses
+- 📱 **Responsive design**
+- 🔄 **Thread management** (create, switch, delete)
+- 💾 **Persistent chat history** with user isolation
+- 🎨 **Modern UI** with Font Awesome icons
+- 🛡️ **Secure sessions** stored in MongoDB
 
 ## Tech Stack
 
@@ -23,9 +25,12 @@ A full-stack chat application built with React and Node.js that allows users to 
 ### Backend
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
-- **MongoDB** - Database
+- **MongoDB** - Database for data and session storage
 - **Mongoose** - MongoDB ODM
 - **OpenAI API** - AI chat completions
+- **Express-session** - Session-based authentication
+- **connect-mongo** - MongoDB session store
+- **bcryptjs** - Password hashing
 
 ## Prerequisites
 
@@ -54,11 +59,12 @@ A full-stack chat application built with React and Node.js that allows users to 
    ```
 
 4. **Environment Setup**
-   
+
    Create a `.env` file in the `Backend` directory:
    ```env
    OPENAI_API_KEY=your_openai_api_key_here
    MONGODB_URI=mongodb://localhost:27017/chatapp
+   SESSION_SECRET=your_session_secret_key_here
    PORT=8080
    ```
 
@@ -80,8 +86,15 @@ A full-stack chat application built with React and Node.js that allows users to 
 
 ## API Endpoints
 
+### Authentication Routes
+- `POST /api/auth/signup` - Create new user account
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+- `GET /api/auth/me` - Check authentication status
+
+### Chat Routes (Protected)
 - `POST /api/chat` - Send message and get AI response
-- `GET /api/thread` - Get all conversation threads
+- `GET /api/thread` - Get user's conversation threads
 - `GET /api/thread/:threadid` - Get specific thread messages
 - `DELETE /api/thread/:threadid` - Delete a thread
 
@@ -90,33 +103,41 @@ A full-stack chat application built with React and Node.js that allows users to 
 ```
 ├── Backend/
 │   ├── models/
-│   │   └── Thread.js          # MongoDB schema
+│   │   ├── Thread.js          # Chat thread schema
+│   │   └── User.js            # User schema with auth
 │   ├── routes/
-│   │   └── chat.js            # API routes
+│   │   ├── auth.js            # Authentication routes
+│   │   └── chat.js            # Chat API routes
+│   ├── middleware/
+│   │   └── auth.js            # Authentication middleware
 │   ├── utils/
 │   │   └── openai.js          # OpenAI integration
-│   └── server.js              # Express server setup
+│   └── server.js              # Express server with session config
 ├── Frontend/
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── Chat.jsx       # Chat display component
 │   │   │   ├── ChatWindow.jsx # Main chat interface
-│   │   │   └── Slidebar.jsx   # Thread sidebar
+│   │   │   ├── Slidebar.jsx   # Thread sidebar
+│   │   │   ├── Login.jsx      # Login component
+│   │   │   └── Signup.jsx     # Signup component
 │   │   ├── context/
-│   │   │   └── MyContext.jsx  # React context
-│   │   └── App.jsx            # Main app component
+│   │   │   └── MyContext.jsx  # React context with auth
+│   │   └── App.jsx            # Main app with routing
 │   └── index.html
 └── README.md
 ```
 
 ## Usage
 
-1. Open the application in your browser
-2. Start a new conversation by typing a message
-3. The AI will respond with a typing effect
-4. Create multiple threads for different conversations
-5. Switch between threads using the sidebar
-6. Delete threads using the minus icon
+1. **Sign up** for a new account or **log in** with existing credentials
+2. Once authenticated, you'll see the chat interface
+3. **Start a new conversation** by typing a message
+4. The AI will respond with a typing effect
+5. **Create multiple threads** for different conversations
+6. **Switch between threads** using the sidebar
+7. **Delete threads** using the minus icon
+8. **Log out** when finished
 
 
 ## Acknowledgments
