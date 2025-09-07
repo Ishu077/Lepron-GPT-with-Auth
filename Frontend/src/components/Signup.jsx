@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { MyContext } from '../MyContext';
 import './Auth.css';
-
+// all $
 function Signup({ onSwitchToLogin }) {
     const [formData, setFormData] = useState({
         username: '',

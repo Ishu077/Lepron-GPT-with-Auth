@@ -13,14 +13,14 @@ function ChatWindow(){
 
 
     const getReply=async()=>{
-        // Check if prompt is empty
+        // Check if prompt is empty    //this is new for authentiction $
         if (!prompt.trim()) {
             alert('Please enter a message');
             return;
         }
 
         // Check if currThreadId exists
-        if (!currThreadId) {
+        if (!currThreadId) {       //$
             alert('Thread ID is missing. Please refresh the page.');
             return;
         }

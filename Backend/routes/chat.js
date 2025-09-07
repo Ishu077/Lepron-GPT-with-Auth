@@ -4,7 +4,7 @@ import getOpenAiResponse from "../utils/openai.js";
 import { requireAuth } from "../middleware/auth.js";
 
 const router =express.Router(); //or express.Router();
-
+//here $ in all middleware as requireAuth!
 router.post("/test",async(req,res)=>{  //test route!
     try{
         const thread = new Thread({

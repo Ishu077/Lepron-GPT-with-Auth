@@ -1,6 +1,6 @@
 import express from "express";
 import User from "../models/User.js";
-
+// all $
 const router = express.Router();
 
 // Signup route

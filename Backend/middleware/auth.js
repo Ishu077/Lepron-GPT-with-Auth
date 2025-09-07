@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-
+//all $
 // Middleware to check if user is authenticated
 export const requireAuth = async (req, res, next) => {
     try {
