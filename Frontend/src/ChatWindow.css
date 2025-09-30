@@ -1,5 +1,40 @@
-.chatWindow{
-    background-color: #212121;
+/*
+    ChatWindow Glassmorphism Styles
+    - Uses CSS variables for easy theming
+    - Glassmorphism: dark, blurred, frosted glass effect
+    - Responsive, accessible, and non-destructive
+    - Comments for each section
+*/
+
+/* Root variables (shared for consistency) */
+:root {
+    --color-bg: rgba(24, 26, 32, 0.85);
+    --color-bg-blur: rgba(24, 26, 32, 0.65);
+    --color-glass: rgba(40, 44, 52, 0.55);
+    --color-border: rgba(255,255,255,0.18);
+    --color-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+    --color-accent: #00ffe7;
+    --color-accent-glow: 0 0 8px #00ffe7, 0 0 16px #00ffe744;
+    --color-accent2: #339cff;
+    --color-text: #f3f6fa;
+    --color-text-muted: #b0b8c9;
+    --color-focus: #00ffe7;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --space-lg: 32px;
+    --space-md: 20px;
+    --space-sm: 12px;
+    --space-xs: 6px;
+    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.95rem;
+    --font-size-lg: 1.15rem;
+}
+
+/* Main chat window container */
+.chatWindow {
+    background: var(--color-bg-blur);
     height: 100vh;
     width: 100%;
     display: flex;
@@ -7,134 +42,234 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
-
+    font-family: var(--font-main);
+    box-shadow: var(--color-shadow);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-radius: var(--radius-lg);
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 /* Navbar styling--> */
 
-.navbar{
+/* Navbar styling */
+.navbar {
     width: 100%;
     display: flex;
+    height: 50px;;
     justify-content: space-between;
     align-items: center;
-    /* padding: 10px; */
+    background: var(--color-glass);
+    border-bottom: 1.5px solid var(--color-border);
+    box-shadow: 0 2px 12px 0 rgba(31, 38, 135, 0.10);
+    padding: var(--space-sm) 0;
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
 }
 
-.navbar span{
+/* Navbar brand/title */
+.navbar span {
     margin: 1rem 2rem;
-
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    letter-spacing: 0.01em;
 }
 
-.userIconDiv{
+/* User icon container */
+.userIconDiv {
     margin: 1rem 2rem;
 }
 
-.userIcon{
-    /* color: blue;
-     */
-    background-color: #339cff;
-    height:25px;
-    width: 25px;
+/* User icon avatar */
+.userIcon {
+    background: var(--color-accent2);
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    box-shadow: 0 0 8px #339cff55;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+.userIcon:hover, .userIcon:focus {
+    background: var(--color-accent);
+    box-shadow: var(--color-accent-glow);
+    outline: 2px solid var(--color-focus);
 }
 
 /* chatinput styling--> */
 
-.chatInput{
+/* Chat input area container */
+.chatInput {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background: transparent;
+    margin-bottom: var(--space-md);
 }
 
-.inputBox{
+/* Input box row */
+.inputBox {
     width: 100%;
-    position: relative; /* here position is used coz- */
-    max-width: 700px;
+    position: relative;
+    max-width: 900px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: var(--color-glass);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--color-shadow);
+    border: 1.5px solid var(--color-border);
+    padding: var(--space-xs) var(--space-sm);
+    margin: 0 auto;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
-input{
+/* Input field */
+input {
     width: 100%;
     border: none;
-    background-color: rgba(255,255,255,0.25);
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px,  /* box shadow of gpt!*/
-                rgba(0, 0, 0, 0.05) 0 -12px 30px,
-                rgba(0, 0, 0, 0.05) 0 4px 6px,
-                rgba(0, 0, 0, 0.05) 0 12px 3px,
-                rgba(0, 0, 0, 0.05) 0 -3px 5px;
-}
-input:focus{
+    background: var(--color-bg-blur);
+    color: var(--color-text);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    box-shadow: 0 1px 4px 0 rgba(31, 38, 135, 0.08);
     outline: none;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+input:focus {
+    box-shadow: 0 0 0 2px var(--color-accent);
+    border: 1.5px solid var(--color-accent);
 }
 
-.info{
+/* Info text */
+.info {
     font-size: 0.8rem;
     padding: 10px;
-    color: #b4b4b4;
+    color: var(--color-text-muted);
 }
 
-#submit{
+/* Submit/send button */
+#submit {
     cursor: pointer;
-    height: 35px;
-    width: 35px;
+    height: 38px;
+    width: 38px;
     font-size: 25px;
-    right:15px;
+    right: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;   /*When you use position: absolute; on the #submit element, it gets removed from the normal document flow and positioned relative to its nearest positioned parent (the .inputBox which has position: relative).*/
+    position: absolute;
+    background: var(--color-accent);
+    color: #23272f;
+    border-radius: 50%;
+    box-shadow: var(--color-accent-glow);
+    border: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+    outline: none;
 }
-
-#submit i:hover{
-    color:white
+#submit:hover, #submit:focus {
+    background: #00bfae;
+    color: #fff;
+    box-shadow: 0 0 12px #00ffe7cc;
+    transform: translateY(-2px) scale(1.04);
+    outline: 2px solid var(--color-focus);
+}
+#submit:active {
+    filter: brightness(0.95);
+    transform: scale(0.98);
+}
+#submit i {
+    transition: color 0.2s;
+}
+#submit i:hover {
+    color: #fff;
 }
 
 /* Drop down styling */
-.dropDown{
+.dropDown {
     position: absolute;
-    right:0;
+    right: 0;
     top: 4rem;
-    background-color: #323232;
-    border-radius: 6px;
+    background: var(--color-glass);
+    border-radius: var(--radius-md);
     padding: 0.3rem 0.5rem;
-    width: 150px;
+    width: 170px;
     z-index: 1000;
     text-align: left;
-    box-shadow: 0px 2px 8px rgbs(0,0,0,0.1)
+    box-shadow: 0px 2px 12px 0 rgba(31, 38, 135, 0.10);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    transition: background 0.2s, box-shadow 0.2s;
 }
 .dropDownItem {
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     margin: 0.3rem 0rem;
     padding: 0.5rem 0.2rem;
     cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s, color 0.2s;
 }
-
-
-.dropDownItem:hover {
-    background-color: rgba(180, 180, 180, 0.25);
-    border-radius: 6px;
+.dropDownItem:hover, .dropDownItem:focus {
+    background: var(--color-accent);
+    color: #23272f;
 }
-
 .dropDownItem.user-info {
     font-weight: 600;
-    color: #4a9eff;
+    color: var(--color-accent2);
     border-bottom: 1px solid #404040;
     margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
+    background: transparent;
+    cursor: default;
+}
+.dropDownItem.user-info:hover {
+    background: transparent;
+    color: var(--color-accent2);
 }
 
-.dropDownItem.user-info:hover {
-    background-color: transparent;
-    cursor: default;
+/* Responsive: mobile-first adjustments */
+@media (max-width: 800px) {
+    .chatWindow {
+        border-radius: var(--radius-md);
+        padding: var(--space-xs);
+    }
+    .navbar span {
+        font-size: var(--font-size-base);
+        margin: 0.5rem 1rem;
+    }
+    .userIcon, .userIconDiv {
+        margin: 0.5rem 1rem;
+        height: 28px;
+        width: 28px;
+    }
+    .inputBox {
+        max-width: 98vw;
+        padding: var(--space-xs);
+    }
+    input {
+        padding: var(--space-sm);
+        font-size: var(--font-size-sm);
+    }
+    #submit {
+        height: 32px;
+        width: 32px;
+        font-size: 20px;
+        right: 8px;
+    }
+    .dropDown {
+        width: 98vw;
+        left: 0;
+        right: 0;
+        top: 3.2rem;
+        border-radius: var(--radius-sm);
+    }
 }

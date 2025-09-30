@@ -23,16 +23,21 @@ button{
     padding: 10px;
     border-radius: 14px;
     background-color: transparent;
-    border: solid 0.25px rgba(255,255,255,0.5);
+    border: 1.5px solid transparent;
     cursor: pointer;
 }
 button span{
     font-size: 20px;
 }
 
-button:hover{
-    background-color: rgba(180,180,180,0.25);
+button:hover, button:focus {
+    background: rgba(0,255,231,0.10);
+    border: 1.5px solid #00ffe7;
+    box-shadow: 0 0 8px #00ffe7, 0 0 16px #00ffe744;
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
     cursor: pointer;
+    transition: background 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
 .history{
@@ -45,16 +50,22 @@ button:hover{
 .history li{
     list-style-type: none;
     cursor: pointer;
-    padding:  2px 5px;
+    padding: 10px 15px;
     margin-bottom: 0.3rem;
     font-size: 14px;
-    border: solid 10px transparent;
+    border: 1.5px solid transparent;
     position: relative;
 }
 
-.history li:hover{
-    background-color: rgba(180,180,180,0.25);
+.history li:hover, .history li:focus {
+    background: rgba(0,255,231,0.10);
     border-radius: 14px;
+    border: 1.5px solid #00ffe7;
+    box-shadow: 0 0 8px #00ffe7, 0 0 16px #00ffe744;
+    padding: 10px 15px;
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    transition: background 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
 .sign{
