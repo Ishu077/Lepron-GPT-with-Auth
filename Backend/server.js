@@ -31,7 +31,8 @@ const port=8080; //8080 is used by mongodb atlas
 
 // CORS configuration to allow credentials
 app.use(cors({
-    origin: 'http://localhost:5173', // Frontend URL
+    // origin: 'http://localhost:5173', // Frontend URL
+    origin: "https://lepron-gpt-with-auth-frontend.onrender.com",
     credentials: true // $ Allow cookies to be sent  
 }));
 
@@ -61,7 +62,7 @@ app.use(session({  //$
         touchAfter: 24 * 3600 // lazy session update
     }),
     cookie: {
-        secure: false, // Set to true in production with HTTPS
+        secure: process.env.NODE_ENV === 'production', // Set to true in production with HTTPS
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
     }
