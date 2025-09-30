@@ -26,7 +26,8 @@ export const MyContextProvider = ({ children }) => {
 
     const checkAuthStatus = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/auth/me', {
+            //http://localhost:8080
+            const response = await fetch('https://lepron-gpt-with-auth.onrender.com/api/auth/me', {
                 credentials: 'include'
             });
 
@@ -59,7 +60,8 @@ export const MyContextProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await fetch('http://localhost:8080/api/auth/logout', {
+            //http://localhost:8080
+            await fetch('https://lepron-gpt-with-auth.onrender.com/api/auth/logout', {
                 method: 'POST',
                 credentials: 'include'
             });

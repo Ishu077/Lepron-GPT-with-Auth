@@ -45,8 +45,9 @@ function ChatWindow(){
             body:JSON.stringify(requestBody)
         }
 
-        try{
-            const response=await fetch("http://localhost:8080/api/chat",options);
+        try{ 
+            //http://localhost:8080
+            const response=await fetch("https://lepron-gpt-with-auth.onrender.com/api/chat",options);
             console.log(response);
             const data=await response.json();
             console.log(data);

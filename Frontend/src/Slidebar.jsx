@@ -17,7 +17,7 @@ function Slidebar() {
             credentials: 'include', //$ Include session cookies
         }
         try{
-            const response=await fetch("http://localhost:8080/api/thread",options);
+            const response=await fetch("https://lepron-gpt-with-auth.onrender.com/api/thread",options);
             // console.log(response);
 
             if (!response.ok) {    //$ this is the addidional check of the error
@@ -61,7 +61,7 @@ function Slidebar() {
     setCurrThreadId(newthreadid);
 
     try{
-      const response=await fetch(`http://localhost:8080/api/thread/${newthreadid}`, {
+  const response=await fetch(`https://lepron-gpt-with-auth.onrender.com/api/thread/${newthreadid}`, {
         credentials: 'include' // Include session cookies  //$
       });
       const data=await response.json();
@@ -80,7 +80,7 @@ function Slidebar() {
       credentials: 'include' //$ Include session cookies  
     }
     try{
-      let response= await fetch(`http://localhost:8080/api/thread/${threadid}`,options);
+  let response= await fetch(`https://lepron-gpt-with-auth.onrender.com/api/thread/${threadid}`,options);
       let resp=await response.json();
       console.log(resp);
 
