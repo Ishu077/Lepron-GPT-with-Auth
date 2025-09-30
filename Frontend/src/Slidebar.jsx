@@ -1,4 +1,4 @@
-import "./Slidebar.css";
+import "./SlideBar.css";
 import { useContext } from "react";
 import { MyContext } from "./MyContext";
 import { useEffect } from "react";
