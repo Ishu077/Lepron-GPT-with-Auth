@@ -27,6 +27,11 @@ import authRoutes from "./routes/auth.js";
 
 const app = express();
 
+// Trust the first proxy in front of the app. This is needed for secure cookies in production.
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1); // trust first proxy
+}
+
 const port=8080; //8080 is used by mongodb atlas
 
 // CORS configuration to allow credentials
@@ -108,6 +113,3 @@ app.use("/api",chatRoutes);
 //     let response=getOpenAiResponse(req.body.message);
 //     res.send(response);
 // })
-
-
-
