@@ -2,10 +2,6 @@
 
 A full-stack chat application built with React and Node.js that allows users to have conversations with an AI assistant powered by OpenAI's GPT model.
 
-## Live Demo
-
-You can try the application live here: **[Lepron-GPT Live](https://lepron-gpt-with-auth-frontend.onrender.com)**
-
 ## Features
 
 - 🔐 **User Authentication** - Secure signup/login with session-based auth

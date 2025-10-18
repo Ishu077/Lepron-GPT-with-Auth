@@ -140,7 +140,7 @@ router.post("/logout", (req, res) => {
     });
 });
 
-// Check authentication status
+// Check authentication status  - it is similar to authentication middleware check!!
 router.get("/me", async (req, res) => {
     try {
         if (!req.session.userId) {
