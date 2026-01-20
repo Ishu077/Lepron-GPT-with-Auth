@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { MyContext } from '../MyContext';
+import { API_ENDPOINTS, apiCall } from '../config/api.js';
 import './Auth.css';
  //all $
 function Login({ onSwitchToSignup }) {
@@ -26,12 +27,8 @@ function Login({ onSwitchToSignup }) {
         setError('');
 
         try {
-            const response = await fetch('https://lepron-gpt-with-auth.onrender.com/api/auth/login', {
+            const response = await apiCall(API_ENDPOINTS.LOGIN, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include', // Important for sessions
                 body: JSON.stringify(formData)
             });
 

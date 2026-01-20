@@ -1,6 +1,7 @@
 //making this for sharing the state!! across different components
 import React, { createContext, useState, useEffect } from "react";
 import {v1 as uuidv1} from 'uuid';
+import { API_ENDPOINTS, apiCall } from './config/api.js';
 
 export const MyContext = createContext();
   //$ all below
@@ -26,10 +27,7 @@ export const MyContextProvider = ({ children }) => {
 
     const checkAuthStatus = async () => {
         try {
-            //http://localhost:8080
-            const response = await fetch('https://lepron-gpt-with-auth.onrender.com/api/auth/me', {
-                credentials: 'include'
-            });
+            const response = await apiCall(API_ENDPOINTS.ME);
 
             if (response.ok) {
                 const data = await response.json();
@@ -55,15 +53,13 @@ export const MyContextProvider = ({ children }) => {
         setAllThreads([]);
         setPrevChats([]);
         setNewChat(true);
-        setCurrThreadId(null);
+        setCurrThreadId(uuidv1()); // Generate new thread ID instead of null
     };
 
     const logout = async () => {
         try {
-            //http://localhost:8080
-            await fetch('https://lepron-gpt-with-auth.onrender.com/api/auth/logout', {
-                method: 'POST',
-                credentials: 'include'
+            await apiCall(API_ENDPOINTS.LOGOUT, {
+                method: 'POST'
             });
         } catch (error) {
             console.error('Logout error:', error);
@@ -74,7 +70,7 @@ export const MyContextProvider = ({ children }) => {
             setAllThreads([]);
             setPrevChats([]);
             setNewChat(true);
-            setCurrThreadId(null);
+            setCurrThreadId(uuidv1()); // Generate new thread ID for next session
             setPrompt("");
             setReply(null);
         }

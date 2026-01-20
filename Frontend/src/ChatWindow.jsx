@@ -1,6 +1,7 @@
 import "./ChatWindow.css";
 import Chat from "./Chat";
 import { MyContext } from "./MyContext";
+import { API_ENDPOINTS, apiCall } from "./config/api.js";
 import { useContext } from "react";
 import { useState } from "react";
 
@@ -46,8 +47,10 @@ function ChatWindow(){
         }
 
         try{ 
-            //http://localhost:8080
-            const response=await fetch("https://lepron-gpt-with-auth.onrender.com/api/chat",options);
+            const response = await apiCall(API_ENDPOINTS.CHAT, {
+                method: 'POST',
+                body: JSON.stringify(requestBody)
+            });
             console.log(response);
             const data=await response.json();
             console.log(data);

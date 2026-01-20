@@ -3,21 +3,14 @@ import { useContext } from "react";
 import { MyContext } from "./MyContext";
 import { useEffect } from "react";
 import {v1 as uuidv1} from 'uuid';
+import { API_ENDPOINTS, apiCall } from './config/api.js';
 function Slidebar() {
 
   const {allThreads, setAllThreads,currThreadId,newChat,setNewChat,setPrompt,setReply,setCurrThreadId,setPrevChats}=useContext(MyContext);
   const getAllThreads=async ()=>{  //this function will be usedd in useEffect!
         // console.log("message : ",prompt," threadid ",currThreadId)
-        const options={
-            method:"GET",
-            headers:{
-                // "Authorization":`Bearer ${process.env.OPENAI_API_KEY}`,
-                "Content-Type":"application/json"
-            },
-            credentials: 'include', //$ Include session cookies
-        }
         try{
-            const response=await fetch("https://lepron-gpt-with-auth.onrender.com/api/thread",options);
+            const response = await apiCall(API_ENDPOINTS.THREADS);
             // console.log(response);
 
             if (!response.ok) {    //$ this is the addidional check of the error
@@ -61,9 +54,7 @@ function Slidebar() {
     setCurrThreadId(newthreadid);
 
     try{
-  const response=await fetch(`https://lepron-gpt-with-auth.onrender.com/api/thread/${newthreadid}`, {
-        credentials: 'include' // Include session cookies  //$
-      });
+      const response = await apiCall(`${API_ENDPOINTS.THREADS}/${newthreadid}`);
       const data=await response.json();
       console.log(data);
       setPrevChats(data);
@@ -75,13 +66,11 @@ function Slidebar() {
   }
 
   const deleteThread=async(threadid)=>{
-    let options={
-      method:"DELETE",
-      credentials: 'include' //$ Include session cookies  
-    }
     try{
-  let response= await fetch(`https://lepron-gpt-with-auth.onrender.com/api/thread/${threadid}`,options);
-      let resp=await response.json();
+      const response = await apiCall(`${API_ENDPOINTS.THREADS}/${threadid}`, {
+        method: 'DELETE'
+      });
+      const resp=await response.json();
       console.log(resp);
 
       //now we want to re-render the slidebar!!
