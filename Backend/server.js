@@ -69,7 +69,7 @@ app.use(session({  //$
         touchAfter: 24 * 3600 // lazy session update
     }),
     cookie: {
-        secure: false, // Set to false for local development, true for production
+        secure: process.env.NODE_ENV === 'production', // true for production (HTTPS), false for local
         httpOnly: true,
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Use 'lax' for development
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
